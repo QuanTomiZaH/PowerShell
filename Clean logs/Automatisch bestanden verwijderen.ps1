@@ -22,9 +22,7 @@ $date = Get-Date -Format "yyyyMMdd"
 
 #Function to get timestamping in the logs
 function Get-TimeStamp {
-
   return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
-
 }
 
 # Create a logfile if it does not exist yet
@@ -35,7 +33,7 @@ If ((Test-Path $LogFileLocationDate) -eq $false) {
 }
 Write-Output "----------------------------------------" >> $LogFileLocationDate
 $d1 = Get-TimeStamp
-Write-Output "$d1 Start deleting old postbus files and folders at "$CleanDirLocation":" >> $LogFileLocationDate
+Write-Output "$d1 Start deleting old postbus files and folders at $CleanDirLocation :" >> $LogFileLocationDate
 
 # Delete the files older than X days
 $FilesArray = Get-ChildItem -Path $CleanDirLocation -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.LastWriteTime -lt $DeleteDateTime }
@@ -43,13 +41,12 @@ foreach ($File in $FilesArray) {
   if ($Null -ne $File) {
     try {
       $d1 = Get-TimeStamp
-      Add-Content $LogFileLocationDate $File.FullName
-      write-host "$d1 Deleting File --> $File" -ForegroundColor "Green"
+      write-Output "$d1 Deleting File: $File" >> $LogFileLocationDate
       Remove-Item $File.FullName | out-null
     }
     Catch {
       $d1 = Get-TimeStamp
-      write-host "$d1 Error Deleting File --> $Folder" -ForegroundColor "Green"
+      write-Output "$d1 Error Deleting File: $Folder" >> $LogFileLocationDate
     }
   }
 }
@@ -60,16 +57,15 @@ do {
   foreach ($Folder in $Directories) {
     try {
       $d1 = Get-TimeStamp
-      Add-Content $LogFileLocationDate $Folder.FullName
-      write-host "$d1 Deleting Folder --> $Folder" -ForegroundColor "Green"
+      write-Output "$d1 Deleting Folder: $Folder" >> $LogFileLocationDate
       Remove-Item $Folder
     }
     Catch {
       $d1 = Get-TimeStamp
-      write-host "$d1 Error Deleting Folder --> $Folder" -ForegroundColor "Green"
+      write-Output "$d1 Error Deleting Folder: $Folder" >> $LogFileLocationDate
     }
   }
 } while ($Directories.count -gt 0)
 
 $d1 = Get-TimeStamp
-Write-Output "$d1 Finished deleting old files and or folders at "$CleanDirLocation":" >> $LogFileLocationDate
+Write-Output "$d1 Finished deleting old files and or folders at $CleanDirLocation :" >> $LogFileLocationDate
