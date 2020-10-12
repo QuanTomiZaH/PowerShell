@@ -10,7 +10,7 @@ $csv = @()
 $csv = Import-Csv -Path $newpath
 
 #Get Domain Base
-$searchbase = Get-ADDomain | ForEach { $_.DistinguishedName }
+$searchbase = Get-ADDomain | ForEach-Object { $_.DistinguishedName }
 
 #Loop through all items in the CSV
 ForEach ($item In $csv) {
@@ -20,12 +20,12 @@ ForEach ($item In $csv) {
   If ($check -eq $True) {
     Try {
       #Check if the Group already exists
-      $exists = Get-ADGroup $item.GroupName
+      Get-ADGroup $item.GroupName | Out-Null
       Write-Host "Group $($item.GroupName) alread exists! Group creation skipped!"
     }
     Catch {
       #Create the group if it doesn't exist
-      $create = New-ADGroup -Name $item.GroupName -GroupScope $item.GroupType -Description $item.Description -Path ($($item.GroupLocation) + "," + $($searchbase))
+      New-ADGroup -Name $item.GroupName -GroupScope $item.GroupType -Description $item.Description -Path ($($item.GroupLocation) + "," + $($searchbase))  | Out-Null
       Write-Host "Group $($item.GroupName) created!"
     }
   }
