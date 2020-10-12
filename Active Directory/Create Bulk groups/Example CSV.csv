@@ -1,0 +1,3 @@
+﻿GroupName,GroupType,GroupLocation,Description
+Filegroup-A,Global,"OU=File Server,OU=Resource Group",Write Rights Filegroup A
+Filegroup-B,Global,"OU=File Server,OU=Resource Group",Write Rights Filegroup A
