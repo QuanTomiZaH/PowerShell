@@ -1,0 +1,5 @@
+notepad $PROFILE
+Note: it will prompt you to create this if it does not exist. Then add the following lines, modifying as you see fit for your environment:
+[system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('http://proxyname:port')
+[system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
+[system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
