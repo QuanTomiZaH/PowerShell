@@ -1,5 +1,3 @@
-tussenstation\Baseline-EBS-Zuid-Brabant.log" /V
-
 Robocopy:
 
 
@@ -8,7 +6,7 @@ robocopy \\OLDSERVER\d$\FOLDER D:\FOLDER /e /zb /copy:DATSOU /r:3 /w:3 /log:c:\R
 
 <C:\\Source> <C:\\destignation>
 
-robocopy "\\ENXSZ217-FS01\swfez0035k\Divdep7\ISTPN_077-O&S_specialisten_Algemeen\Bibliotheek" "C:\_NoBackup\Robocopy Test2" /E /Z /FFT /MT:32 /r:3 /w:3 /log:"D:\Migratiemap\Logging\EBSNoord.log" /V
+robocopy "<source>" "<destignation>" /E /Z /FFT /MT:32 /r:3 /w:3 /log:"<loglocation>.txt" /V
 /xf *.jpg
 
 robocopy "" "" /E /Z /FFT /MT:64 /r:3 /w:3 /log:""
@@ -23,11 +21,11 @@ robocopy "" "" /E /Z /FFT /MT:64 /r:3 /w:3 /log:""
 ----------
 
 Robocopy voor Vincent:
-Robocopy "\\enx-rd-srv0002\f$\files" "D:\20201201_DATA_OT" /FFT /V /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX  /MT:128 /R:3 /W:3 /log:"D:\20201201_DATA_OT_LOG.txt"
+Robocopy "" "" /FFT /V /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX  /MT:128 /R:3 /W:3 /log:"
 
 
 Robocopy herstel data:
-Robocopy "D:\20201201_DATA_OT" "\\enx-gr-srv0002\F$\Files" /FFT /V  /MIR /PURGE /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX /MT:128 /R:3 /W:3 /log:"C:\temp\LoggingFixZwolle\20201202_DATA_OT_LOG.txt"
+Robocopy "" "" /FFT /V  /MIR /PURGE /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX /MT:128 /R:3 /W:3 /log:".txt"
 
 -----------
 
