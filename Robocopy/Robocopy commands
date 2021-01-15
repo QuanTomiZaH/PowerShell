@@ -1,0 +1,39 @@
+tussenstation\Baseline-EBS-Zuid-Brabant.log" /V
+
+Robocopy:
+
+
+ robocopy <C:\\Source> <C:\\destination> /E /Z /FFT /COPYALL /MT:32 /log:c:\ROBOCOPY-Logs\FOLDER.log
+robocopy \\OLDSERVER\d$\FOLDER D:\FOLDER /e /zb /copy:DATSOU /r:3 /w:3 /log:c:\ROBOCOPY-Logs\FOLDER.log /V /NP
+
+<C:\\Source> <C:\\destignation>
+
+robocopy "\\ENXSZ217-FS01\swfez0035k\Divdep7\ISTPN_077-O&S_specialisten_Algemeen\Bibliotheek" "C:\_NoBackup\Robocopy Test2" /E /Z /FFT /MT:32 /r:3 /w:3 /log:"D:\Migratiemap\Logging\EBSNoord.log" /V
+/xf *.jpg
+
+robocopy "" "" /E /Z /FFT /MT:64 /r:3 /w:3 /log:""
+/xf *.jpg
+
+-----------
+
+        $i++
+        Write-Progress -Activity "Processing files..." -status "Processed $i of $($totalfiles)" -PercentComplete ($i*100/$($totalfiles))
+
+
+----------
+
+Robocopy voor Vincent:
+Robocopy "\\enx-rd-srv0002\f$\files" "D:\20201201_DATA_OT" /FFT /V /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX  /MT:128 /R:3 /W:3 /log:"D:\20201201_DATA_OT_LOG.txt"
+
+
+Robocopy herstel data:
+Robocopy "D:\20201201_DATA_OT" "\\enx-gr-srv0002\F$\Files" /FFT /V  /MIR /PURGE /TEE /S /E /DCOPY:DA /COPY:DATS /SECFIX /MT:128 /R:3 /W:3 /log:"C:\temp\LoggingFixZwolle\20201202_DATA_OT_LOG.txt"
+
+-----------
+
+	- Voorbeeld commando kopiëren: robocopy <C:\\Source> <C:\\destignation> /E /Z /FFT /COPYALL /MT:32
+	- Voorbeeld commando alleen nieuwe documenten: robocopy <C:\\Source> <C:\\destignation> /XO /E /Z /FFT /COPYALL /MT:32
+- Voorbeeld commando sub-onderdelen(voor SharePoint): robocopy <C:\\Source> <C:\\destignation> /E /Z /FFT /COPYALL /MT:32 *.cfg
+
+------------
+
